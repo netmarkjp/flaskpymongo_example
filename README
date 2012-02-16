@@ -8,3 +8,9 @@ Developer's environment
 - PyMongo 2.1.1
 - MongoDB 2.0.2
 
+Running Application
+--------------------
+1. [commandline] cd flaskpymongo_example
+2. [commandline] python application.py
+3. [browser] access to http://localhost:5000/
+
