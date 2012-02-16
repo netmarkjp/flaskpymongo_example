@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block title %}
+API Usage
+{% endblock %}
+{% block script %}
+<script languate="javascript">
+</script>
+<style type="text/css">
+</style>
+{% endblock %}
+{% block body %}
+<div class="container">
+<div class="span12 offset0">
+<table class="table table-borderd table-striped">
+<thead>
+    <th></th>
+    <th>URL</th>
+    <th>Usage</th>
+</thead>
+<tbody>
+<tr>
+    <td>
+        field list
+    </td>
+    <td>
+        /api/fields
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td>
+        value list
+    </td>
+    <td>
+        /api/values?field=<i>field_name</i>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr>
+    <td>
+        search
+    </td>
+    <td>
+        /api/search?<i>fieldname</i>=<i>value</i>[&<i>fieldname</i>=<i>value</i>..]
+    </td>
+    <td>
+        match as /.*<i>value</i>.*/i
+    </td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+{% endblock %}

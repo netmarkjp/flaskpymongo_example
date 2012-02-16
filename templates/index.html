@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+{% block title %}
+Documents
+{% endblock %}
+{% block script %}
+<script languate="javascript">
+    $('.collapse').collapse();
+    $(function(){
+        $('#create').click(function(){
+            $('#data_form').attr('method','POST');
+            $('#data_form').attr('action','/regist');
+            $('#_id').attr('value','');
+            $('#data_form').submit();
+        });
+        $('#regist').click(function(){
+            $('#data_form').attr('method','POST');
+            $('#data_form').attr('action','/regist');
+            $('#data_form').submit();
+        });
+        $('#delete').click(function(){
+            $('#data_form').attr('method','POST');
+            $('#data_form').attr('action','/delete');
+            $('#data_form').submit();
+        });
+        $('#cancel').click(function(){
+            $('#cancel').attr('type','reset');
+            $('#data_form').submit();
+        });
+    });
+</script>
+<style type="text/css">
+    .form-horizontal .control-group {
+        margin-bottom: 0px;
+    }    
+</style>
+{% endblock %}
+{% block body %}
+<div class="container">
+<div class="span12 offset0">
+<div class="" id="form_head">
+<legend data-toggle="collapse" data-target="#data_form_container">
+Edit
+<button class="btn btn-info">
+show/hide
+</button>
+</legend>
+</div>
+<div class="collapse {% if editform %}in{% endif %}" id="data_form_container">
+<form id="data_form" name="data" method="POST" action="" class="form-horizontal">
+<fieldset>
+{% for field in fields %}
+<div class="control-group">
+    <label class="control-label" for="{{field.name}}"> {{field.label}} </label>
+    <div class="controls">
+        {% if field.input_type == 'textarea' %}
+        <textarea class="input-xlarge" id="{{field.name}}" name="{{field.name}}">{{field.default_value}}</textarea>
+        {% else %}
+        <input type="text" class="input-xlarge" id="{{field.name}}" name="{{field.name}}" value="{{field.default_value}}" />
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+<input type="hidden" id="_id" name="_id" value="{{ selected._id }}" />
+<div class="form-actions">
+<button class="btn btn-primary" type="submit" id="regist" name="regist">Save/Overwrite</button>
+<button class="btn btn-warning" type="submit" id="delete" name="delete">Delete</button>
+<button class="btn" type="reset"  id="cancel" name="cancel" data-toggle="collapse" data-target="#data_form_container">Cancel</button>
+<button class="btn btn-primary" type="submit" id="create" name="create">Save as New</button>
+</div>
+</fieldset>
+</form>
+</div>
+
+<table class="table table-borderd table-striped">
+<thead>
+    {% for field in fields %}
+    <th>{{ field.label }}</th>
+    {% endfor %}
+</thead>
+<tbody>
+{% for item in items %}
+<tr>
+    {% for k,v in item.items() %}
+    {% if k != '_id' and k != 'visible' %}
+    <td>
+    <a href="/?_id={{item._id}}">{{ v }}</a>
+    </td>
+    {% endif %}
+    {% endfor %}
+</tr>
+{% endfor %}
+</thead>
+</tbody>
+</table>
+
+<ul>
+
+</div>
+</div>
+{% endblock %}
